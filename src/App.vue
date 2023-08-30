@@ -1,22 +1,29 @@
 <template>
+    <!-- The main application template -->
     <div class="app">
       <h1>My Meaningful Todo List</h1>
+      <!-- Container for adding new tasks -->
       <div class="add-task-container">
+        <!-- Input field for new tasks -->
         <input
           v-model="newTodo"
           @keyup.enter="addTodo"
           placeholder="Enter a new task..."
         />
+        <!-- Button to add new tasks -->
         <button @click="addTodo" class="add-task-button">Add Task</button>
       </div>
+      <!-- List of tasks -->
       <ul>
         <li v-for="(todo, index) in todos" :key="index" :class="{ 'completed': todo.completed, 'deleted': todo.deleted }">
+          <!-- Checkbox to mark task as completed -->
           <input type="checkbox" v-model="todo.completed">
+          <!-- Task text -->
           <span>{{ todo.text }}</span>
+          <!-- Button to delete task -->
           <button @click="toggleDeleteStatus(todo)">Delete</button>
         </li>
       </ul>
-      <button @click="deleteMarkedTasks" class="delete-marked-button">Delete Marked Tasks</button>
     </div>
   </template>
   
@@ -24,28 +31,29 @@
   export default {
     data() {
       return {
+        // Input for new task
         newTodo: '',
+        // Array to store tasks
         todos: []
       };
     },
     methods: {
+      // Method to add a new task
       addTodo() {
         if (this.newTodo.trim() === '') return;
         this.todos.push({ text: this.newTodo, completed: false, deleted: false });
         this.newTodo = '';
       },
+      // Method to toggle task's delete status
       toggleDeleteStatus(todo) {
         todo.deleted = !todo.deleted;
-      },
-      deleteMarkedTasks() {
-        this.todos = this.todos.filter(todo => !todo.deleted);
       }
     }
   };
   </script>
   
-  <style scoped>
-  /* Your component-specific CSS can go here */
+  <style>
+  /* Styling for the component */
   body {
     font-family: 'Arial', sans-serif;
     background-color: #f0f0f0;
@@ -66,6 +74,9 @@
     padding: 20px;
     box-sizing: border-box;
   }
+  
+  /* Styles for other elements */
+  /* ... (scroll down for the rest of the styles) ... */
   
   h1 {
     margin: 0 0 20px;
@@ -92,21 +103,6 @@
   
   .add-task-button:hover {
     background-color: #3aaf5f;
-  }
-  
-  .delete-marked-button {
-    background-color: #ff6666;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 20px;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background-color 0.3s;
-  }
-  
-  .delete-marked-button:hover {
-    background-color: #ff4d4d;
   }
   
   input[type="text"] {
