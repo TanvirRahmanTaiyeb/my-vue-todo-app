@@ -1,11 +1,11 @@
-/* Your global styles can go here */
+/* global styles* /
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
   }
   
-  /* Your component-specific CSS can go here */
+  /* component-specific CSS */
   body {
     background-color: #f0f0f0;
     display: flex;
